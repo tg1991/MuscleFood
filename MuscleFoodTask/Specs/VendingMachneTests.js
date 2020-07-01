@@ -152,7 +152,7 @@ describe('Vending Machine Test', function () {
                     vendingMachine.addCoin(5.67);
                     vendingMachine.addCoin(5.00);
                     vendingMachine.addCoin(2.27);
-                    vendingMachine.returnCoin();
+                    vendingMachine.returnCoins();
                     expect(vendingMachine.display).toEqual('INSERT COINS');
                     expect(vendingMachine.coinsReturned).toEqual(0.4);
                 });
