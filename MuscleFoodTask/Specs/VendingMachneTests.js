@@ -5,7 +5,7 @@ describe('Vending Machine Test', function () {
 
     var vendingMachine;
 
-    beforeEach(function() {
+    beforeEach(function () {
         vendingMachine = new setUpVendingMachine();
     });
 
@@ -54,36 +54,66 @@ describe('Vending Machine Test', function () {
             it('select product cola where exact money used and display shows THANK YOU, then ' +
                 'display shows INSERT COIN and current amount equals $0.00',
                 function () {
-                    //code here
+                    vendingMachine.addCoin(5.67);
+                    vendingMachine.addCoin(5.67);
+                    vendingMachine.addCoin(5.67);
+                    vendingMachine.addCoin(5.67);
+                    vendingMachine.selectProduct('cola');
+                    expect(vendingMachine.dispensedItem).toEqual('cola');
+                    expect(vendingMachine.display).toEqual('THANK YOU');
+                    expect(vendingMachine.amountInserted).toEqual(0.00);
                 });
 
             it('select product cola where not enough money is added display shows INSERT COINS',
                 function () {
-                    //code here
+                    vendingMachine.addCoin(2.27);
+                    expect(vendingMachine.display).toEqual('$0.10');
+                    vendingMachine.selectProduct('cola');
+                    expect(vendingMachine.display).toEqual('INSERT COINS');
+                    expect(vendingMachine.amountInserted).toEqual(0.10);
                 });
 
             it('select product chips where exact money used and display shows THANK YOU, then ' +
                 'display shows INSERT COIN and current amount equals $0.00',
                 function () {
-                    //code here
+                    vendingMachine.addCoin(5.67);
+                    vendingMachine.addCoin(5.67);
+                    vendingMachine.selectProduct('chips');
+                    expect(vendingMachine.dispensedItem).toEqual('chips');
+                    expect(vendingMachine.display).toEqual('THANK YOU');
+                    expect(vendingMachine.amountInserted).toEqual(0.00);
                 });
 
             it('select product chips where not enough money is added display shows INSERT COINS',
                 function () {
-                    //code here
+                    vendingMachine.addCoin(5.00);
+                    expect(vendingMachine.display).toEqual('$0.05');
+                    vendingMachine.selectProduct('chips');
+                    expect(vendingMachine.display).toEqual('INSERT COINS');
+                    expect(vendingMachine.amountInserted).toEqual(0.05);
                 });
 
             it('select product candy where exact money used and display shows THANK YOU, then ' +
                 'display shows INSERT COIN and current amount equals $0.00',
                 function () {
-                    //code here
+                    vendingMachine.addCoin(5.67);
+                    vendingMachine.addCoin(5.67);
+                    vendingMachine.addCoin(5.00);
+                    vendingMachine.addCoin(2.27);
+                    vendingMachine.selectProduct('candy');
+                    expect(vendingMachine.dispensedItem).toEqual('candy');
+                    expect(vendingMachine.display).toEqual('THANK YOU');
+                    expect(vendingMachine.amountInserted).toEqual(0.00);
                 });
 
             it('select product candy where not enough money is added display shows INSERT COINS',
                 function () {
-                    //code here
+                    vendingMachine.addCoin(5.67);
+                    expect(vendingMachine.display).toEqual('$0.25');
+                    vendingMachine.selectProduct('candy');
+                    expect(vendingMachine.display).toEqual('INSERT COINS');
+                    expect(vendingMachine.amountInserted).toEqual(0.25);
                 });
-
         });
 
 
