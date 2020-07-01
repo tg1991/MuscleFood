@@ -6,7 +6,7 @@ describe('Vending Machine Test', function () {
     var vendingMachine;
 
     beforeEach(function () {
-        vendingMachine = new setUpVendingMachine();
+        vendingMachine = new VendingMachine();
     });
 
     //tests for first task.
