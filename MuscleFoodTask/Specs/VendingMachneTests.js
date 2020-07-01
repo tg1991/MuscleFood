@@ -134,7 +134,6 @@ describe('Vending Machine Test', function () {
                     vendingMachine.addCoin(5.67);
                     vendingMachine.addCoin(5.67);
                     vendingMachine.addCoin(5.67);
-                    expect(vendingMachine.display).toEqual('$0.75');
                     vendingMachine.selectProduct('candy');
                     expect(vendingMachine.display).toEqual('THANK YOU');
                     expect(vendingMachine.coinsReturned).toEqual(0.1);

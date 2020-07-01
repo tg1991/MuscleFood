@@ -64,7 +64,7 @@
 
         if (typeof selectedCoin === 'object' && selectedCoin && selectedCoin.accepted) {
             this.totalAmount += selectedCoin.coinValue;
-            this.display = '$' + selectedCoin.coinValue.toFixed(2);
+            this.display = '$' + this.totalAmount.toFixed(2);
 
         } else if (typeof selectedCoin === 'object' && selectedCoin) {
             this.display = 'INSERT COINS';
@@ -82,7 +82,8 @@
         });
 
         if (typeof selectedProduct === 'object' && selectedProduct && selectedProduct.price <= this.totalAmount) {
-            this.coinsReturned = this.totalAmount - selectedProduct.price;
+            this.coinsReturned = (this.totalAmount - selectedProduct.price).toFixed(2);
+            this.coinsReturned = parseFloat(this.coinsReturned);
             this.totalAmount = 0;
             this.display = 'THANK YOU';
             this.dispensedItem = selectedProduct.name;
