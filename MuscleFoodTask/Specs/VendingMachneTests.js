@@ -51,6 +51,11 @@ describe('Vending Machine Test', function () {
 
     describe('Select Product',
         function () {
+
+            afterEach(function () {
+                vendingMachine = new setUpVendingMachine();
+            });
+
             it('select product cola where exact money used and display shows THANK YOU, then ' +
                 'display shows INSERT COIN and current amount equals $0.00',
                 function () {
@@ -119,22 +124,42 @@ describe('Vending Machine Test', function () {
 
     describe('Make Change',
         function () {
+
+            afterEach(function () {
+                vendingMachine = new setUpVendingMachine();
+            });
+
             it('select product candy where too much money is added display shows THANK YOU, then' +
                 'remaining amount placed in coin return and display shows INSERT COIN' +
                 'and current amount equals $0.00',
                 function () {
-                    //code here
+                    vendingMachine.addCoin(5.67);
+                    vendingMachine.addCoin(5.67);
+                    vendingMachine.addCoin(5.67);
+                    expect(vendingMachine.display).toEqual('$0.75');
+                    vendingMachine.selectProduct('candy');
+                    expect(vendingMachine.display).toEqual('THANK YOU');
+                    expect(vendingMachine.coinsReturned).toEqual(0.10);
+                    expect(vendingMachine.amountInserted).toEqual(0.00);
                 });
         });
 
     describe('Return Coins',
         function () {
+
+            afterEach(function () {
+                vendingMachine = new setUpVendingMachine();
+            });
+
             it('coins are inserted and return coins button is pressed, coins returned and' +
                 'display shows INSERT COINS',
                 function () {
-                    //code here
+                    vendingMachine.addCoin(5.67);
+                    vendingMachine.addCoin(5.00);
+                    vendingMachine.addCoin(2.27);
+                    vendingMachine.returnCoin();
+                    expect(vendingMachine.display).toEqual('INSERT COINS');
+                    expect(vendingMachine.coinsReturned).toEqual(0.40);
                 });
         });
-
-
 });
