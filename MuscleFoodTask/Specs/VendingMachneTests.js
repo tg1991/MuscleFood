@@ -3,7 +3,11 @@
 
 describe('Vending Machine Test', function () {
 
+    var vendingMachine;
 
+    beforeEach(function() {
+        vendingMachine = new setUpVendingMachine();
+    });
 
     //tests for first task.
 
@@ -11,7 +15,7 @@ describe('Vending Machine Test', function () {
         function () {
             it('on page load machine displays INSERT COINS',
                 function () {
-                    //code here
+                    expect(vendingMachine.display).toEqual('INSERT COINS');
                 });
         });
 
@@ -20,27 +24,27 @@ describe('Vending Machine Test', function () {
         function () {
             it('adding in a nickel coin and display shows $0.05',
                 function () {
-                    //code here
+                    vendingMachine.addCoin(5.00);
+                    expect(vendingMachine.display).toEqual('$0.05');
                 });
 
             it('adding in a dime coin and display shows $0.10',
                 function () {
-                    //code here
+                    vendingMachine.addCoin(2.27);
+                    expect(vendingMachine.display).toEqual('$0.10');
                 });
 
             it('adding in a quarter coin and display shows $0.25',
                 function () {
-                    //code here
+                    vendingMachine.addCoin(5.67);
+                    expect(vendingMachine.display).toEqual('$0.25');
                 });
 
             it('adding in a penny coin and display shows INSERT COIN and coin return equals $0.01',
                 function () {
-                    //code here
-                });
-
-            it('if any other coins are added then they will be rejected',
-                function () {
-                    //code here
+                    vendingMachine.addCoin(2.50);
+                    expect(vendingMachine.display).toEqual('INSERT COINS');
+                    expect(vendingMachine.coinsReturned).toEqual(0.01);
                 });
 
         });
